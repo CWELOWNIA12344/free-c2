@@ -83,10 +83,14 @@ const docEl = document.documentElement;
 btn.addEventListener('click', () => {
     initial.style.display = 'none';
     video.style.display = 'block';
-    video.volume = 1.0;
+    video.volume = 1.0; // maksymalna głośność
 
     video.play().then(() => {
-        const requestFullScreen = docEl.requestFullscreen || docEl.webkitRequestFullscreen || docEl.mozRequestFullScreen || docEl.msRequestFullscreen;
+        // fullscreen dopiero po udanym play
+        const requestFullScreen = docEl.requestFullscreen
+                               || docEl.webkitRequestFullscreen
+                               || docEl.mozRequestFullScreen
+                               || docEl.msRequestFullscreen;
         if (requestFullScreen) requestFullScreen.call(docEl);
     }).catch(err => console.error("Video play failed:", err));
 });
