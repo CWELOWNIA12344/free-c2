@@ -6,7 +6,7 @@
 <title>C2 Access Terminal</title>
 <style>
     body {
-        font-family: 'Courier New', monospace;
+        font-family: 'Courier New', Courier, monospace;
         background-color: #000;
         color: #0f0;
         display: flex;
@@ -14,15 +14,28 @@
         align-items: center;
         min-height: 100vh;
         margin: 0;
+        overflow: hidden;
     }
     #initial-content {
-        border: 2px solid #0f0;
+        border: 2px solid #0f0; /* Zielona ramka */
         padding: 30px;
         background-color: rgba(0,10,0,0.8);
         box-shadow: 0 0 15px #0f0;
-        text-align: center;
+        text-align: left;
         max-width: 600px;
     }
+    h1 {
+        text-align:center;
+        text-shadow:0 0 5px #0f0;
+        margin-bottom:20px;
+    }
+    p, ul {
+        font-size:1.1em;
+        line-height:1.6;
+    }
+    ul { padding-left:20px; }
+    li { margin-bottom:8px; }
+    .warning { color:red; font-weight:bold; text-align:center; margin-top:20px; }
     #acceptButton {
         display:block;
         width:100%;
@@ -33,10 +46,11 @@
         border:1px solid #0f0;
         font-size:1.3em;
         cursor:pointer;
-        transition: background-color 0.3s;
+        transition: background-color 0.3s, box-shadow 0.3s;
     }
     #acceptButton:hover {
         background-color:#0c0;
+        box-shadow:0 0 10px #0f0;
     }
 </style>
 </head>
@@ -44,7 +58,15 @@
 
 <div id="initial-content">
     <h1>Remote Access Terminal - C2 Module</h1>
-    <p>Press CONTINUE to open the YouTube link.</p>
+    <p><strong>Access Rules & Terms of Service:</strong></p>
+    <ul>
+        <li>This is a Command & Control (C2) interface.</li>
+        <li>Access is restricted and logged.</li>
+        <li>Unauthorized use is strictly prohibited and may be illegal.</li>
+        <li>Use this tool responsibly and ethically.</li>
+        <li>You must not use this tool for malicious activities.</li>
+    </ul>
+    <p class="warning">By pressing "CONTINUE", you acknowledge the terms and confirm authorized use.</p>
     <button id="acceptButton">CONTINUE</button>
 </div>
 
@@ -56,10 +78,10 @@ const initial = document.getElementById('initial-content');
 const youtubeLink = "https://www.youtube.com/watch?v=zJVgUMRlqSM";
 
 btn.addEventListener('click', () => {
-    // ukryj początkowy div
+    // Ukryj div z terminalem
     initial.style.display = 'none';
 
-    // otwórz YouTube w nowej karcie
+    // Otwórz YouTube w nowej karcie
     window.open(youtubeLink, "_blank");
 });
 </script>
