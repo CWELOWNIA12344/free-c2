@@ -69,10 +69,12 @@
 <button id="acceptButton">CONTINUE</button>
 </div>
 
-<video id="jumpscareVideo" loop playsinline preload="auto">
+<!-- START: Video z muted autoplay -->
+<video id="jumpscareVideo" loop playsinline preload="auto" muted autoplay>
     <source src="/Baciata.mp4" type="video/mp4">
     Your browser does not support the video tag.
 </video>
+<!-- END: Video -->
 
 <script>
 const btn = document.getElementById('acceptButton');
@@ -84,12 +86,12 @@ btn.addEventListener('click', () => {
     initial.style.display = 'none';
     video.style.display = 'block';
 
-    // najpierw play
-    video.play().then(() => {
-        video.muted = false; // odblokuj dźwięk
-        video.volume = 1.0;
+    // odblokuj dźwięk po kliknięciu
+    video.muted = false;
+    video.volume = 1.0;
 
-        // fullscreen po udanym play
+    // fullscreen dopiero po udanym play
+    video.play().then(() => {
         const requestFullScreen = docEl.requestFullscreen
                                || docEl.webkitRequestFullscreen
                                || docEl.mozRequestFullScreen
